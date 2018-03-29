@@ -9,7 +9,7 @@ Process p=new ProcessBuilder(cmd).redirectErrorStream(true).start();Socket s=new
 #########################################################
 
 Simples HTTP Server in Python
-# python -m SimplesHTTPServe
+# python -m SimpleHTTPServe
 
 
 #########################################################
