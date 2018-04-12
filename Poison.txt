@@ -2,6 +2,9 @@
 
 ## Enumerate
 
+
+How To Connect To VNC Server Ussing SSH Tunnel
+
 ssh -L 5901:localhost:5901 -N -f -l vncuser host_remoto
 
 -L 5901:localhost:5901: Especifica que a porta fornecida no host local (cliente) deve ser encaminhada para o host e a porta especificados no lado remoto. Aqui você está usando a porta 5901 no host local para encaminhar para host_remoto na porta 5901.
