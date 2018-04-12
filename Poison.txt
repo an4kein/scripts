@@ -4,6 +4,13 @@
 
 ssh -L 5901:localhost:5901 -N -f -l vncuser host_remoto
 
+-L 5901:localhost:5901: Especifica que a porta fornecida no host local (cliente) deve ser encaminhada para o host e a porta especificados no lado remoto. Aqui você está usando a porta 5901 no host local para encaminhar para host_remoto na porta 5901.
+-N: Não execute um comando remoto, ou seja, apenas portas de encaminhamento.
+-f: Solicita que o ssh vá para o segundo plano antes da execução do comando. Uma vez fornecida a senha, ela irá para o segundo plano e você poderá usar o prompt para comandos de tipo no sistema local.
+-l vncuser: vncuser é o usuário para efetuar login como na máquina remota.
+host_remoto: endereço IP ou nome do host do seu servidor.
+
+
 ps aux |grep ssh
 
 
