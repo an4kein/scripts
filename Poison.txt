@@ -1,1 +1,18 @@
 ## 0x00
+
+## Enumerate
+
+ssh -L 5901:localhost:5901 -N -f -l vncuser host_remoto
+
+ps aux |grep ssh
+
+
+##output_command 
+-> root      9175  0.0  0.0  45556  2772 ?        Ss   02:55   0:01 ssh -L 5901:localhost:5901 -N -f -l vncuser host_remoto
+
+
+vncviewer -passwd <file> localhost:1
+
+
+
+That's great :)
