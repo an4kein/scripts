@@ -75,5 +75,5 @@ Pronto ao executar o comando acima, conseguimos completamente mudar o fluxo do p
 Apos feito isso, conseguimos chamar a funcao shell().
 
 Author: @Anakein
-Salve ao mano @zc00l
+Salve ao Guru @zc00l
 
